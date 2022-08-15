@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "heroku-postbuild":"cd client && npm run build"
+    "heroku-postbuild":"cd frontend && npm run build"
   },
   "keywords": [],
   "author": "",
