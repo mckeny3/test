@@ -6,7 +6,7 @@ import userRoutes from "./Routes/users.js";
 import commentRoutes from "./Routes/comments.js";
 import videoRoutes from "./Routes/video.js";
 import cookieParser from "cookie-parser";
-
+import path from "path";
 import cors from "cors";
 import { AppBar } from "@material-ui/core";
 const app = express();
@@ -32,11 +32,12 @@ const CONNECT = async () => {
 };
 
 /////CONNECTING FRONT
-app.use(express.static(path.join(__dirname, "/frontend/build")));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "/frontend/build", "index.html"));
-});
-
+if (process.env.NODE_ENV === "PRODUCTION") {
+  app.use(express.static("frontend/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve("__dirname,frontend", "build", "index.html"));
+  });
+}
 CONNECT();
 //////////
 //////MIDDLEWARE
