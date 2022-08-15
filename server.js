@@ -8,6 +8,7 @@ import videoRoutes from "./Routes/video.js";
 import cookieParser from "cookie-parser";
 
 import cors from "cors";
+import { AppBar } from "@material-ui/core";
 const app = express();
 const PORT = process.env.PORT;
 dotenv.config();
@@ -29,6 +30,13 @@ const CONNECT = async () => {
       return;
     });
 };
+
+/////CONNECTING FRONT
+app.use(express.static(path.join(__dirname, "/frontend/build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/frontend/build", "index.html"));
+});
+
 CONNECT();
 //////////
 //////MIDDLEWARE
