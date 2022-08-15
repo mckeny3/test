@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "nodemon server.js",
+    "server":"nodemon --watch --exec node server.js",
     "client":"npm start --prefix frontend",
     "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --force --prefix frontend && npm run build --prefix frontend"
   },
